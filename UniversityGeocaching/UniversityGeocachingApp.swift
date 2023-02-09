@@ -12,6 +12,7 @@ struct UniversityGeocachingApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            NearbyQuestView()
         }
     }
 }

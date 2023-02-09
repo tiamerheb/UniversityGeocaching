@@ -14,6 +14,18 @@
 		967FF46F29930CC3005EB8BC /* UniversityGeocachingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF46E29930CC3005EB8BC /* UniversityGeocachingTests.swift */; };
 		967FF47929930CC3005EB8BC /* UniversityGeocachingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF47829930CC3005EB8BC /* UniversityGeocachingUITests.swift */; };
 		967FF47B29930CC3005EB8BC /* UniversityGeocachingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF47A29930CC3005EB8BC /* UniversityGeocachingUITestsLaunchTests.swift */; };
+		96DA87D429959DC300284CBE /* NearbyQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87D329959DC300284CBE /* NearbyQuestView.swift */; };
+		96DA87D529959DC300284CBE /* NearbyQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87D329959DC300284CBE /* NearbyQuestView.swift */; };
+		96DA87D629959DC300284CBE /* NearbyQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87D329959DC300284CBE /* NearbyQuestView.swift */; };
+		96DA87D829959ECC00284CBE /* ListQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87D729959ECC00284CBE /* ListQuestView.swift */; };
+		96DA87D929959ECC00284CBE /* ListQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87D729959ECC00284CBE /* ListQuestView.swift */; };
+		96DA87DA29959ECC00284CBE /* ListQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87D729959ECC00284CBE /* ListQuestView.swift */; };
+		96DA87DC29959EDE00284CBE /* PastQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87DB29959EDE00284CBE /* PastQuestView.swift */; };
+		96DA87DD29959EDE00284CBE /* PastQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87DB29959EDE00284CBE /* PastQuestView.swift */; };
+		96DA87DE29959EDE00284CBE /* PastQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87DB29959EDE00284CBE /* PastQuestView.swift */; };
+		96DA87E029959EEC00284CBE /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87DF29959EEC00284CBE /* UserSettingsView.swift */; };
+		96DA87E129959EEC00284CBE /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87DF29959EEC00284CBE /* UserSettingsView.swift */; };
+		96DA87E229959EEC00284CBE /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87DF29959EEC00284CBE /* UserSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +56,10 @@
 		967FF47429930CC3005EB8BC /* UniversityGeocachingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniversityGeocachingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		967FF47829930CC3005EB8BC /* UniversityGeocachingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityGeocachingUITests.swift; sourceTree = "<group>"; };
 		967FF47A29930CC3005EB8BC /* UniversityGeocachingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityGeocachingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		96DA87D329959DC300284CBE /* NearbyQuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyQuestView.swift; sourceTree = "<group>"; };
+		96DA87D729959ECC00284CBE /* ListQuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListQuestView.swift; sourceTree = "<group>"; };
+		96DA87DB29959EDE00284CBE /* PastQuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastQuestView.swift; sourceTree = "<group>"; };
+		96DA87DF29959EEC00284CBE /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +112,7 @@
 			children = (
 				967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */,
 				967FF45F29930CBE005EB8BC /* ContentView.swift */,
+				96DA87E329959F4E00284CBE /* Navigation */,
 				967FF46129930CC2005EB8BC /* Assets.xcassets */,
 				967FF46329930CC2005EB8BC /* Preview Content */,
 			);
@@ -125,6 +142,17 @@
 				967FF47A29930CC3005EB8BC /* UniversityGeocachingUITestsLaunchTests.swift */,
 			);
 			path = UniversityGeocachingUITests;
+			sourceTree = "<group>";
+		};
+		96DA87E329959F4E00284CBE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				96DA87D729959ECC00284CBE /* ListQuestView.swift */,
+				96DA87D329959DC300284CBE /* NearbyQuestView.swift */,
+				96DA87DB29959EDE00284CBE /* PastQuestView.swift */,
+				96DA87DF29959EEC00284CBE /* UserSettingsView.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DA87DC29959EDE00284CBE /* PastQuestView.swift in Sources */,
 				967FF46029930CBE005EB8BC /* ContentView.swift in Sources */,
 				967FF45E29930CBE005EB8BC /* UniversityGeocachingApp.swift in Sources */,
+				96DA87D429959DC300284CBE /* NearbyQuestView.swift in Sources */,
+				96DA87E029959EEC00284CBE /* UserSettingsView.swift in Sources */,
+				96DA87D829959ECC00284CBE /* ListQuestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DA87E129959EEC00284CBE /* UserSettingsView.swift in Sources */,
+				96DA87D529959DC300284CBE /* NearbyQuestView.swift in Sources */,
+				96DA87D929959ECC00284CBE /* ListQuestView.swift in Sources */,
 				967FF46F29930CC3005EB8BC /* UniversityGeocachingTests.swift in Sources */,
+				96DA87DD29959EDE00284CBE /* PastQuestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +310,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DA87DE29959EDE00284CBE /* PastQuestView.swift in Sources */,
 				967FF47B29930CC3005EB8BC /* UniversityGeocachingUITestsLaunchTests.swift in Sources */,
 				967FF47929930CC3005EB8BC /* UniversityGeocachingUITests.swift in Sources */,
+				96DA87D629959DC300284CBE /* NearbyQuestView.swift in Sources */,
+				96DA87E229959EEC00284CBE /* UserSettingsView.swift in Sources */,
+				96DA87DA29959ECC00284CBE /* ListQuestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
