@@ -14,3 +14,10 @@ struct ListQuestView : View{
             .font(.largeTitle)
     }
 }
+
+struct ListQuestView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListQuestView()
+    }
+}
+

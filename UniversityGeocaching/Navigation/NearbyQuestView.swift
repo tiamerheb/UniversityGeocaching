@@ -10,13 +10,9 @@ import SwiftUI
 
 struct NearbyQuestView : View{
     var body : some View{
-        ScrollView(.vertical){
-            NavigationView{
+        NavigationView{
+            ScrollView(.vertical, showsIndicators: true){
                 VStack{
-                    VStack(alignment: .leading) {
-                        Text("Nearby Quests")
-                            .font(.headline)
-                    }
                     HStack{
                         NavigationLink(destination: DiscoverKnauss()){
                             HStack{
@@ -40,9 +36,10 @@ struct NearbyQuestView : View{
                                 VStack{
                                     Text("Campus Cafes")
                                         .font(.headline)
-                                    //Image("KNAUSS")
-                                    //.resizable()
-                                    //.aspectRatio(contentMode: .fit)
+                                    Image("CAFES")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                    Text("Explore USD's campus dining")
                                 }
                             }
                             .frame(width: 150, height: 250)
@@ -53,7 +50,14 @@ struct NearbyQuestView : View{
                         }
                     }
                 }
+                .navigationBarTitle(Text("Nearby Quests"))
             }
         }
+    }
+}
+
+struct NearbyQuestView_Previews: PreviewProvider {
+    static var previews: some View {
+        NearbyQuestView()
     }
 }

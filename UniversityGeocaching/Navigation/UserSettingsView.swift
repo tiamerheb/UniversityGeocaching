@@ -14,3 +14,9 @@ struct UserSettingsView : View{
             .font(.largeTitle)
     }
 }
+
+struct UserSettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserSettingsView()
+    }
+}

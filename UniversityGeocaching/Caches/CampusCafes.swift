@@ -15,3 +15,9 @@ struct CampusCafes : View{
         .navigationBarBackButtonHidden()
     }
 }
+
+struct CampusCafesView_Previews: PreviewProvider {
+    static var previews: some View {
+        CampusCafes()
+    }
+}

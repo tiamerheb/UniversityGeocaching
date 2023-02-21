@@ -15,3 +15,9 @@ struct DiscoverKnauss : View{
         .navigationBarBackButtonHidden()
     }
 }
+
+struct DiscoverKnaussView_Previews: PreviewProvider {
+    static var previews: some View {
+        DiscoverKnauss()
+    }
+}

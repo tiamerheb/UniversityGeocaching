@@ -32,6 +32,9 @@
 		96DA87EA299C501600284CBE /* CampusCafes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87E9299C501600284CBE /* CampusCafes.swift */; };
 		96DA87EB299C501600284CBE /* CampusCafes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87E9299C501600284CBE /* CampusCafes.swift */; };
 		96DA87EC299C501600284CBE /* CampusCafes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87E9299C501600284CBE /* CampusCafes.swift */; };
+		96DA87EE29A5864800284CBE /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87ED29A5864800284CBE /* SignIn.swift */; };
+		96DA87EF29A5864800284CBE /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87ED29A5864800284CBE /* SignIn.swift */; };
+		96DA87F029A5864800284CBE /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DA87ED29A5864800284CBE /* SignIn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,7 @@
 		96DA87DF29959EEC00284CBE /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		96DA87E5299C499A00284CBE /* DiscoverKnauss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverKnauss.swift; sourceTree = "<group>"; };
 		96DA87E9299C501600284CBE /* CampusCafes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCafes.swift; sourceTree = "<group>"; };
+		96DA87ED29A5864800284CBE /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			children = (
 				967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */,
 				967FF45F29930CBE005EB8BC /* ContentView.swift */,
+				96DA87ED29A5864800284CBE /* SignIn.swift */,
 				96DA87E4299C497B00284CBE /* Caches */,
 				96DA87E329959F4E00284CBE /* Navigation */,
 				967FF46129930CC2005EB8BC /* Assets.xcassets */,
@@ -304,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96DA87E6299C499A00284CBE /* DiscoverKnauss.swift in Sources */,
+				96DA87EE29A5864800284CBE /* SignIn.swift in Sources */,
 				96DA87DC29959EDE00284CBE /* PastQuestView.swift in Sources */,
 				967FF46029930CBE005EB8BC /* ContentView.swift in Sources */,
 				967FF45E29930CBE005EB8BC /* UniversityGeocachingApp.swift in Sources */,
@@ -325,6 +331,7 @@
 				967FF46F29930CC3005EB8BC /* UniversityGeocachingTests.swift in Sources */,
 				96DA87DD29959EDE00284CBE /* PastQuestView.swift in Sources */,
 				96DA87E7299C499A00284CBE /* DiscoverKnauss.swift in Sources */,
+				96DA87EF29A5864800284CBE /* SignIn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96DA87E8299C499A00284CBE /* DiscoverKnauss.swift in Sources */,
+				96DA87F029A5864800284CBE /* SignIn.swift in Sources */,
 				96DA87DE29959EDE00284CBE /* PastQuestView.swift in Sources */,
 				967FF47B29930CC3005EB8BC /* UniversityGeocachingUITestsLaunchTests.swift in Sources */,
 				967FF47929930CC3005EB8BC /* UniversityGeocachingUITests.swift in Sources */,

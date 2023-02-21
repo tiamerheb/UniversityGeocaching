@@ -14,3 +14,9 @@ struct PastQuestView : View{
             .font(.largeTitle)
     }
 }
+
+struct PastQuestView_Previews: PreviewProvider {
+    static var previews: some View {
+        PastQuestView()
+    }
+}
