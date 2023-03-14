@@ -28,10 +28,10 @@ struct ContentView: View {
                         .background(Color.blue)
                         .cornerRadius(.infinity)
                     }
-                    NavigationLink(destination: ListQuestView()){
+                    NavigationLink(destination: CreateQuestView()){
                         HStack{
                             Image(systemName: "checklist.unchecked")
-                            Text("List a Quest")
+                            Text("Create a Quest")
                         }
                         .frame(width: 150, height: 30)
                         .padding()
@@ -88,3 +88,12 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+///
+///Create a quest needs to be like a Google form
+///Past quests has to have all the completed quests (QR code being completed
+///adds the current quest to the past quest page)
+///NOTE : vetoing the sign-in page
+///
+///settings (size/font/color)
+///
