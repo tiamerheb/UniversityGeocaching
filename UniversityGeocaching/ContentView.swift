@@ -13,7 +13,7 @@ struct ContentView: View {
             VStack{
                 Spacer(minLength: 100)
                 VStack(alignment: .leading) {
-                    Text("HOME")
+                    Text("Home")
                         .font(.headline)
                 }
                 HStack{
@@ -28,6 +28,7 @@ struct ContentView: View {
                         .background(Color.blue)
                         .cornerRadius(.infinity)
                     }
+                    //@FIXME do we want this done from the app?
                     NavigationLink(destination: CreateQuestView()){
                         HStack{
                             Image(systemName: "checklist.unchecked")
@@ -81,7 +82,7 @@ struct ContentView: View {
             }
         }
     }
-};
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

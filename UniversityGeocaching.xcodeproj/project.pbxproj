@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		659750F729C4EF0200CF7990 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 659750F629C4EF0200CF7990 /* .gitignore */; };
 		967FF45E29930CBE005EB8BC /* UniversityGeocachingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */; };
 		967FF46029930CBE005EB8BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF45F29930CBE005EB8BC /* ContentView.swift */; };
 		967FF46229930CC2005EB8BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967FF46129930CC2005EB8BC /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		659750F629C4EF0200CF7990 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		967FF45A29930CBE005EB8BC /* UniversityGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityGeocachingApp.swift; sourceTree = "<group>"; };
 		967FF45F29930CBE005EB8BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		967FF45C29930CBE005EB8BC /* UniversityGeocaching */ = {
 			isa = PBXGroup;
 			children = (
+				659750F629C4EF0200CF7990 /* .gitignore */,
 				967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */,
 				967FF45F29930CBE005EB8BC /* ContentView.swift */,
 				96DA87ED29A5864800284CBE /* SignIn.swift */,
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				967FF46529930CC2005EB8BC /* Preview Assets.xcassets in Resources */,
+				659750F729C4EF0200CF7990 /* .gitignore in Resources */,
 				967FF46229930CC2005EB8BC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
