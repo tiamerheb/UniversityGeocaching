@@ -27,6 +27,8 @@ struct NavigationScreenView: View {
     
     @State var showingUserLocation = false
     
+    @State var cacheBubbleColor = Color.green.opacity(0.4)
+    
     var caches = [
         Cache(name: "USD Torero Store", coordinate: CLLocationCoordinate2D(latitude: 32.772364, longitude: -117.187653)),
         Cache(name: "Student Life Pavilion", coordinate: CLLocationCoordinate2D(latitude: 32.77244, longitude: -117.18727)),
@@ -41,7 +43,7 @@ struct NavigationScreenView: View {
                 Map(coordinateRegion: $region, showsUserLocation: showingUserLocation, annotationItems: caches) { cache in
                     MapAnnotation(coordinate: cache.coordinate) {
                         Circle()
-                            .foregroundColor(Color.green.opacity(0.4))
+                            .foregroundColor(cacheBubbleColor)
                             .frame(width: 100, height: 100)
                     }
                 }
