@@ -105,16 +105,14 @@ struct ContentView: View {
                     
                 }
                     
-                    Spacer()
-                    VStack(alignment: .leading) {
+                    VStack() {
                         Text("Featured Quest")
                             .font(.headline)
                         Image("featuredQuest")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 200, height: 200)
-                        Text("Discover the hidden treasures of the ancient temple.")
-                            .font(.subheadline)
+                        
                     }
                 }
             }
