@@ -12,7 +12,7 @@ struct UniversityGeocachingApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            NearbyQuestView() // @FIXME this hovers everywhere to we really want to keep this always on?
+            //NearbyQuestView() // @FIXME this hovers everywhere to we really want to keep this always on?
         }
     }
 }

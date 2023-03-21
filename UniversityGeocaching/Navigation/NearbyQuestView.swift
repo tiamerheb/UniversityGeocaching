@@ -8,15 +8,17 @@
 import Foundation
 import SwiftUI
 
-struct NearbyQuestView : View{
-    var body : some View{
-        NavigationView{
-            ScrollView(.vertical, showsIndicators: true){
-                VStack{
-                    HStack{
-                        NavigationLink(destination: DiscoverKnauss()){
-                            HStack{
-                                VStack{
+struct NearbyQuestView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack {
+                    HStack {
+                        NavigationLink(destination: DiscoverKnauss()) {
+                            HStack {
+                                VStack {
                                     Text("Discover Knauss")
                                         .font(.headline)
                                     Image("KNAUSS")
@@ -31,9 +33,9 @@ struct NearbyQuestView : View{
                             .background(Color.blue)
                             .cornerRadius(15)
                         }
-                        NavigationLink(destination: CampusCafes()){
-                            HStack{
-                                VStack{
+                        NavigationLink(destination: CampusCafes()) {
+                            HStack {
+                                VStack {
                                     Text("Campus Cafes")
                                         .font(.headline)
                                     Image("CAFES")
@@ -51,6 +53,11 @@ struct NearbyQuestView : View{
                     }
                 }
                 .navigationBarTitle(Text("Nearby Quests"))
+                .navigationBarItems(trailing: Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Close")
+                }))
             }
         }
     }
