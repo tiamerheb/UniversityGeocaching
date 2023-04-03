@@ -21,9 +21,10 @@ struct UserSettingsView : View {
                 .padding(.bottom, 20)
             
             Toggle(isOn: $isDarkMode) {
-                Text("Dark Mode")
+               Text("Dark Mode")
             }
             .padding(.bottom, 10)
+            .preferredColorScheme(isDarkMode ? .dark : .light)
             
             VStack(alignment: .leading) {
                 Text("Cache Bubble Color")
@@ -44,6 +45,8 @@ struct UserSettingsView : View {
         .padding()
     }
 }
+
+
 
 struct UserSettingsView_Previews: PreviewProvider {
     static var previews: some View {

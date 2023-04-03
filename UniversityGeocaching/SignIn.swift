@@ -61,24 +61,24 @@ struct SignIn: View {
 
             Spacer()
 
-            Button {
-                print("do login action")
-            } label: {
-                Text("Sign In")
-                    .font(.title2)
-                    .bold()
-                    .foregroundColor(.white)
+            NavigationLink(destination: ContentView()){
+                HStack{
+                    Text("Sign In")
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(.white)
+                }
+                .frame(height: 50)
+                .frame(maxWidth: .infinity) // how to make a button fill all the space available horizontaly
+                .background(
+                    isSignInButtonDisabled ? // how to add a gradient to a button in SwiftUI if the button is disabled
+                    LinearGradient(colors: [.gray], startPoint: .topLeading, endPoint: .bottomTrailing) :
+                        LinearGradient(colors: [.blue, .white], startPoint: .topLeading, endPoint: .bottomTrailing)
+                )
+                .cornerRadius(20)
+                .disabled(isSignInButtonDisabled) // how to disable while some condition is applied
+                .padding()
             }
-            .frame(height: 50)
-            .frame(maxWidth: .infinity) // how to make a button fill all the space available horizontaly
-            .background(
-                isSignInButtonDisabled ? // how to add a gradient to a button in SwiftUI if the button is disabled
-                LinearGradient(colors: [.gray], startPoint: .topLeading, endPoint: .bottomTrailing) :
-                    LinearGradient(colors: [.blue, .white], startPoint: .topLeading, endPoint: .bottomTrailing)
-            )
-            .cornerRadius(20)
-            .disabled(isSignInButtonDisabled) // how to disable while some condition is applied
-            .padding()
         }
     }
 }
