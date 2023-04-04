@@ -41,6 +41,7 @@ struct UserSettingsView : View {
             Toggle(isOn: $shareLocation) {
                 Text("Share Location")
             }
+            Spacer()
         }
         .padding()
     }
