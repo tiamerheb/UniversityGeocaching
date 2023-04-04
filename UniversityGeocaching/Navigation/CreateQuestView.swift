@@ -15,13 +15,18 @@ struct CreateQuestView : View{
     @State private var difficulty: String = ""
     @State private var hints: String = ""
     @State private var radius: String = ""
-    
+    @State private var cacheCoords: String = "0.0, 0.0"
+
     private let manager = CLLocationManager()
-    private var cacheCoordniates: String = "0.0, 0.0"
+    //private var cacheCoordniates: String = "0.0, 0.0"
     
     //    might need to make a function for each input? also need to validate thats not in the db unclear best way to do this
     func validate(cacheName:String) -> Bool {
         return true
+    }
+    func updateCurrentLocation(){
+        //issues with setting a state variable?
+        cacheCoords = getCurrentCoordinates()
     }
     
     func getCurrentCoordinates() -> String{
@@ -35,6 +40,7 @@ struct CreateQuestView : View{
         
         VStack(spacing: 20){
             Text("Create new Quest").font(.headline)
+            
             Form{
                 
                 TextField("Cache Name:",
@@ -51,18 +57,21 @@ struct CreateQuestView : View{
                 TextField("Radius (feet):",
                           text: $radius
                 )
+//                @FIXMe want to use this template everywhere could get ugly
                 HStack{
-                    Text("Coordinates: " + cacheCoordniates)
+                    Text("Coordinates:")
+                    TextField("Coordinates:",
+                              text: $cacheCoords
+                    )
                     Spacer()
-                    Button("Update") {
-                        //call function here
+                    Button("Use Current") {
+                        updateCurrentLocation()
                     }
                 }
                 // @FIXME link this to a function to get current gps coordinates
             }
             
             Text("Commit using current location").font(.headline)
-            Spacer()
 
         }
     }
