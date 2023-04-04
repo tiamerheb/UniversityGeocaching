@@ -104,16 +104,16 @@ struct ContentView: View {
                     }
                     
                 }
-                    
+                NavigationLink(destination: NearbyQuestView()){
                     VStack() {
-                        Text("Featured Quest")
+                        Text("Nearby Quests")
                             .font(.headline)
                         Image("featuredQuest")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 200, height: 200)
                         
-                    }
+                    }}
                 }
             }
         }

@@ -7,7 +7,34 @@
 
 import Foundation
 import SwiftUI
+struct Location:
+    Hashable, Codable{
+    let cachename:String
+    let difficulty:Int
+    let hints:String
+    let latitude:Double
+    let longitude:Double
+    let radius:Int
+    let trivia:String
+}
+func getAllLocations(){
+    guard let url = URL(string: "http://127.0.0.1:5000/api/location") else{
+        print("FAILED")
+        return}
 
+    var request = URLRequest(url: url)
+    request.setValue("putTheKeyHere", forHTTPHeaderField: "X-Auth")
+    print("getAllLocations")
+    let task = URLSession.shared.dataTask(with: url) { data, response, responseError in
+        
+//        let statusCode = (response as! HTTPURLResponse).statusCode
+    print("URL DATA")
+    print(String(data: data!, encoding: .utf8)!)
+    }
+    
+    print("EXIT")
+
+}
 struct NearbyQuestView: View {
     @Environment(\.presentationMode) var presentationMode
     
@@ -15,6 +42,9 @@ struct NearbyQuestView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
+                    Button("Get Locations") {
+                        getAllLocations()
+                    }
                     HStack {
                         NavigationLink(destination: DiscoverKnauss()) {
                             HStack {

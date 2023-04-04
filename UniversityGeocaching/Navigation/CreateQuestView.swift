@@ -24,6 +24,11 @@ struct CreateQuestView : View{
     func validate(cacheName:String) -> Bool {
         return true
     }
+    func callAPIUpdate(){
+        guard let url = URL(string: "http://127.0.0.1:5000/api/") else{
+            return
+        }
+    }
     func updateCurrentLocation(){
         //issues with setting a state variable?
         cacheCoords = getCurrentCoordinates()
