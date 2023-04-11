@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EE82CD329E6172D00CA15CE /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE82CD229E6172D00CA15CE /* CodeScanner */; };
 		659750F729C4EF0200CF7990 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 659750F629C4EF0200CF7990 /* .gitignore */; };
 		85A1CCB729C81E600031EC23 /* NavigationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A1CCB629C81E600031EC23 /* NavigationScreenView.swift */; };
 		967FF45E29930CBE005EB8BC /* UniversityGeocachingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5EE82CD029E6169000CA15CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		659750F629C4EF0200CF7990 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		85A1CCB629C81E600031EC23 /* NavigationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationScreenView.swift; sourceTree = "<group>"; };
 		967FF45A29930CBE005EB8BC /* UniversityGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EE82CD329E6172D00CA15CE /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +129,7 @@
 		967FF45C29930CBE005EB8BC /* UniversityGeocaching */ = {
 			isa = PBXGroup;
 			children = (
+				5EE82CD029E6169000CA15CE /* Info.plist */,
 				659750F629C4EF0200CF7990 /* .gitignore */,
 				967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */,
 				967FF45F29930CBE005EB8BC /* ContentView.swift */,
@@ -200,6 +204,9 @@
 			dependencies = (
 			);
 			name = UniversityGeocaching;
+			packageProductDependencies = (
+				5EE82CD229E6172D00CA15CE /* CodeScanner */,
+			);
 			productName = UniversityGeocaching;
 			productReference = 967FF45A29930CBE005EB8BC /* UniversityGeocaching.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +279,9 @@
 				Base,
 			);
 			mainGroup = 967FF45129930CBE005EB8BC;
+			packageReferences = (
+				5EE82CD129E6172D00CA15CE /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = 967FF45B29930CBE005EB8BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -499,11 +509,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UniversityGeocaching/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UniversityGeocaching/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "For scanning the QR code";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,11 +540,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UniversityGeocaching/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UniversityGeocaching/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "For scanning the QR code";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -657,6 +673,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5EE82CD129E6172D00CA15CE /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5EE82CD229E6172D00CA15CE /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5EE82CD129E6172D00CA15CE /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 967FF45229930CBE005EB8BC /* Project object */;
 }

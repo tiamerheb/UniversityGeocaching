@@ -9,6 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 import CoreLocation
+import CodeScanner
 
 struct Cache: Identifiable {
     var id = UUID()
@@ -29,6 +30,24 @@ struct NavigationScreenView: View {
     
     @State var cacheBubbleColor = Color.green.opacity(0.4)
     
+    //for QR code scanner
+    @State var isPresentingScanner = false
+    @State var scannedCode: String = "Scan a QR code to get started."
+    
+    //qr code scannersheet
+    var scannerSheet : some View {
+        CodeScannerView(
+            codeTypes: [.qr],
+            completion: { result in
+                if case let .success(code) = result {
+                    self.scannedCode = code.string //made a .string device
+                    self.isPresentingScanner = false //by setting this to flase it closes the scanner sheet
+                    
+                }
+            }
+        )
+    }
+    
     var caches = [
         Cache(name: "USD Torero Store", coordinate: CLLocationCoordinate2D(latitude: 32.772364, longitude: -117.187653)),
         Cache(name: "Student Life Pavilion", coordinate: CLLocationCoordinate2D(latitude: 32.77244, longitude: -117.18727)),
@@ -37,6 +56,8 @@ struct NavigationScreenView: View {
     ]
     
     var body: some View {
+
+
         TabView {
             // Map tab
             ZStack {
@@ -84,14 +105,21 @@ struct NavigationScreenView: View {
                 Image(systemName: "map")
                 Text("Map")
             }
-            
-            // Camera tab button
-            Text("Camera/QR reader")
-                .tabItem {
-                    Image(systemName: "camera")
-                    Text("Camera")
+
+            // Scanning feature
+            VStack{
+                Text("Camera/QR reader")
+                Button("Scan Code Now"){
+                    self.isPresentingScanner = true
                 }
-            
+                .sheet(isPresented: $isPresentingScanner){
+                    self.scannerSheet
+                }
+            }
+            .tabItem {
+                Image(systemName: "camera")
+                Text("Scan Code")
+            }
             // List tab
             List(caches) { cache in
                 Text(cache.name)
@@ -136,3 +164,4 @@ struct NavigationScreenView_Previews:PreviewProvider {
     }
     
     
+
