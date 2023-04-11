@@ -2,7 +2,7 @@
 //  NavigationScreenView.swift
 //  UniversityGeocaching
 //
-//  Created by Ewhondens Kenel on 3/19/23.
+//  Created by Ewhondens Kenel and Grace Gresli on 3/19/23.
 //
 
 import Foundation
