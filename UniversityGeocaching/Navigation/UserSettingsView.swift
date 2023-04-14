@@ -19,8 +19,10 @@ struct UserSettingsView: View {
             Form {
                 Section(header: Text("Appearance")) {
                     Toggle(isOn: $isDarkMode) {
-                        Text("Dark Mode")
-                    }
+                            Text("Dark Mode")
+                         }
+                         .padding(.bottom, 10)
+                         .preferredColorScheme(isDarkMode ? .dark : .light)
                 }
                 
                 Section(header: Text("Map Settings")) {
