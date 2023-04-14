@@ -1,91 +1,90 @@
-//
 //  CreateQuestView.swift
 //  UniversityGeocaching
 //
 //  Created by Tia Merheb on 3/14/23.
 //
 
-import Foundation
 import SwiftUI
 import CoreLocation
 
-struct CreateQuestView : View{
-    //    Sanatize inputs later
-    @State private var username: String = ""
+struct CreateQuestView: View {
+    @State private var cacheName: String = ""
     @State private var difficulty: String = ""
     @State private var hints: String = ""
     @State private var radius: String = ""
-    @State private var cacheCoords: String = "0.0, 0.0"
 
     private let manager = CLLocationManager()
-    //private var cacheCoordniates: String = "0.0, 0.0"
-    
-    //    might need to make a function for each input? also need to validate thats not in the db unclear best way to do this
-    func validate(cacheName:String) -> Bool {
+    private var cacheCoordinates: String = "0.0, 0.0"
+
+    func validate(cacheName: String) -> Bool {
         return true
     }
-    func callAPIUpdate(){
-        guard let url = URL(string: "http://127.0.0.1:5000/api/") else{
-            return
-        }
-    }
-    func updateCurrentLocation(){
-        //issues with setting a state variable?
-        cacheCoords = getCurrentCoordinates()
-    }
-    
-    func getCurrentCoordinates() -> String{
+
+    func getCurrentCoordinates() -> String {
         manager.requestLocation()
-//        var location = CLLocations.first() // @FIXME sanatize to make sure non null
-//        var lat = location?.coordinate.latitude
-//        var long = location.longitude
         return "0.0,0.0"
     }
-    var body : some View{
-        
-        VStack(spacing: 20){
-            Text("Create new Quest").font(.headline)
-            
-            Form{
-                
-                TextField("Cache Name:",
-                          text: $username
-                ).onSubmit {
-                    validate(cacheName: username)
-                }
-                TextField("Difficulty (1-5)",
-                          text: $difficulty
-                )
-                TextField("Hints:",
-                          text: $hints
-                )
-                TextField("Radius (feet):",
-                          text: $radius
-                )
-//                @FIXMe want to use this template everywhere could get ugly
-                HStack{
-                    Text("Coordinates:")
-                    TextField("Coordinates:",
-                              text: $cacheCoords
-                    )
-                    Spacer()
-                    Button("Use Current") {
-                        updateCurrentLocation()
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Create New Quest")
+                .font(.largeTitle)
+                .padding()
+
+            List {
+                Section(header: Text("Quest Details")) {
+                    HStack {
+                        Text("Cache Name:")
+                        Spacer()
+                        TextField("Enter cache name", text: $cacheName)
+                    }
+                    HStack {
+                        Text("Difficulty (1-5):")
+                        Spacer()
+                        TextField("Enter difficulty", text: $difficulty)
+                            .keyboardType(.numberPad)
+                    }
+                    HStack {
+                        Text("Hints:")
+                        Spacer()
+                        TextField("Enter hints", text: $hints)
+                    }
+                    HStack {
+                        Text("Radius (feet):")
+                        Spacer()
+                        TextField("Enter radius", text: $radius)
+                            .keyboardType(.numberPad)
                     }
                 }
-                // @FIXME link this to a function to get current gps coordinates
-            }
-            
-            Text("Commit using current location").font(.headline)
 
+                Section(header: Text("Location")) {
+                    HStack {
+                        Text("Coordinates: ")
+                        Spacer()
+                        Text(cacheCoordinates)
+                            .foregroundColor(.secondary)
+                    }
+                    Button(action: {
+                        // Update coordinates here
+                    }) {
+                        Text("Update Coordinates")
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                }
+            }
+            .listStyle(GroupedListStyle())
+
+            Spacer()
         }
     }
 }
-
 
 struct CreateQuestView_Previews: PreviewProvider {
     static var previews: some View {
         CreateQuestView()
     }
 }
-

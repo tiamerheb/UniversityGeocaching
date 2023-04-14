@@ -1,57 +1,73 @@
-//
 //  UserSettingsView.swift
 //  UniversityGeocaching
 //
 //  Created by Tia Merheb on 2/9/23.
 //
 
-import Foundation
 import SwiftUI
 
-struct UserSettingsView : View {
+struct UserSettingsView: View {
     
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("cacheBubbleColor") private var cacheBubbleColor = "Blue"
     @AppStorage("shareLocation") private var shareLocation = true
+    @AppStorage("notificationFrequency") private var notificationFrequency = "Daily"
+    @AppStorage("distanceUnit") private var distanceUnit = "Metric"
     
-    var body : some View{
-        VStack(alignment: .leading) {
-            Text("Settings")
-                .font(.largeTitle)
-                .padding(.bottom, 20)
-            
-            Toggle(isOn: $isDarkMode) {
-               Text("Dark Mode")
-            }
-            .padding(.bottom, 10)
-            .preferredColorScheme(isDarkMode ? .dark : .light)
-            
-            VStack(alignment: .leading) {
-                Text("Cache Bubble Color")
-                
-                Picker(selection: $cacheBubbleColor, label: Text("Cache Bubble Color")) {
-                    Text("Blue").tag("Blue")
-                    Text("Green").tag("Green")
-                    Text("Red").tag("Red")
+    var body: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("Appearance")) {
+                    Toggle(isOn: $isDarkMode) {
+                        Text("Dark Mode")
+                    }
                 }
-                .pickerStyle(SegmentedPickerStyle())
+                
+                Section(header: Text("Map Settings")) {
+                    Picker(selection: $cacheBubbleColor, label: Text("Cache Bubble Color")) {
+                        Text("Blue").tag("Blue")
+                        Text("Green").tag("Green")
+                        Text("Red").tag("Red")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    Toggle(isOn: $shareLocation) {
+                        Text("Share Location")
+                    }
+                }
+                
+                Section(header: Text("Notifications")) {
+                    Picker(selection: $notificationFrequency, label: Text("Notification Frequency")) {
+                        Text("Daily").tag("Daily")
+                        Text("Weekly").tag("Weekly")
+                        Text("Monthly").tag("Monthly")
+                    }
+                }
+                
+                Section(header: Text("Units")) {
+                    Picker(selection: $distanceUnit, label: Text("Distance Unit")) {
+                        Text("Metric").tag("Metric")
+                        Text("Imperial").tag("Imperial")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                
+                Section {
+                    Button(action: {
+                        // Handle account deletion
+                    }) {
+                        Text("Delete Account")
+                            .foregroundColor(.red)
+                    }
+                }
             }
-            .padding(.bottom, 10)
-            
-            Toggle(isOn: $shareLocation) {
-                Text("Share Location")
-            }
-            Spacer()
+            .navigationBarTitle("Settings", displayMode: .inline)
         }
-        .padding()
     }
 }
-
-
 
 struct UserSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         UserSettingsView()
     }
 }
-
