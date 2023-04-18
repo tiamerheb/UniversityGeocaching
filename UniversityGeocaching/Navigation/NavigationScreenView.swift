@@ -34,6 +34,12 @@ struct NavigationScreenView: View {
     @State var isPresentingScanner = false
     @State var scannedCode: String = "Scan a QR code to get started."
     
+    @State var isPresentingFinishPopUp = false
+
+    func showFinishPopUp() {
+        self.isPresentingFinishPopUp = true
+    }
+    
     //qr code scannersheet
     var scannerSheet : some View {
         CodeScannerView(
@@ -42,7 +48,7 @@ struct NavigationScreenView: View {
                 if case let .success(code) = result {
                     self.scannedCode = code.string //made a .string device
                     self.isPresentingScanner = false //by setting this to flase it closes the scanner sheet
-                    
+                    showFinishPopUp()
                 }
             }
         )
@@ -56,8 +62,6 @@ struct NavigationScreenView: View {
     ]
     
     var body: some View {
-
-
         TabView {
             // Map tab
             ZStack {
@@ -129,7 +133,10 @@ struct NavigationScreenView: View {
                 Text("List")
             }
         }
-        .edgesIgnoringSafeArea(.all)
+        .sheet(isPresented: $isPresentingFinishPopUp) {
+                FinishPopUpView()
+            }
+            .edgesIgnoringSafeArea(.all)
     }
     
     class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -157,11 +164,49 @@ struct NavigationScreenView: View {
     }
 }
 
+
+struct FinishPopUpView: View {
+var body: some View {
+    VStack {
+        Text("Quest Completed!")
+            .font(.title)
+            .fontWeight(.bold)
+            .padding()
+        Image(systemName: "checkmark.circle.fill")
+            .resizable()
+            .frame(width: 80, height: 80)
+            .foregroundColor(.green)
+            .padding()
+        Text("Congratulations, you have finished the quest!")
+            .multilineTextAlignment(.center)
+            .padding()
+        Button(action: {
+            // Dismiss the pop-up
+            dismiss()
+        }) {
+            Text("Close")
+                .fontWeight(.bold)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+    }
+    .padding()
+    .background(Color.white)
+    .cornerRadius(20)
+    .shadow(radius: 20)
+}
+
+func dismiss() {
+    // Dismiss the pop-up
+}
+}
+
+
 struct NavigationScreenView_Previews:PreviewProvider {
         static var previews: some View {
             NavigationScreenView()
         }
     }
-    
-    
 
