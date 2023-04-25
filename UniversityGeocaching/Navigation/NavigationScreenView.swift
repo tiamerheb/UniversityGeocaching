@@ -96,6 +96,7 @@ struct NavigationScreenView: View {
             }
             .onAppear {
                 locationManager.requestLocation()
+                
             }
             .onReceive(locationManager.$location) { location in
                 if let location = location {
