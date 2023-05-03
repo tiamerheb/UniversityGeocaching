@@ -8,7 +8,7 @@ import Foundation
 class QuestWrapper: ObservableObject, Identifiable {
     let quest: CreatedQuest
     @Published var completed: Bool
-    
+
     init(quest: CreatedQuest) {
         self.quest = quest
         self.completed = quest.completed
@@ -21,7 +21,7 @@ struct NearbyQuestView: View {
     @State private var nearbyQuests: [QuestWrapper] = []
     @StateObject private var cancellables = Cancellables()
     @StateObject private var viewModel = NearbyQuestViewModel()
-    
+
     // The body of the NearbyQuestView.
     var body: some View {
         NavigationView {
@@ -45,18 +45,19 @@ struct NearbyQuestView: View {
         }
         .onAppear(perform: loadData)
     }
-    
+
     // Fetches quests from the server and updates the nearbyQuests property.
     func loadData() {
         fetchQuests()
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-                    break
+                    print("Fetching quests completed successfully")
                 case .failure(let error):
                     print("Error fetching quests: \(error)")
                 }
             }, receiveValue: { quests in
+                print("Received quests: \(quests)")
                 DispatchQueue.main.async {
                     viewModel.filterAndSortQuests(quests)
                     nearbyQuests = viewModel.nearbyQuests
@@ -64,17 +65,38 @@ struct NearbyQuestView: View {
             })
             .store(in: &cancellables.storage)
     }
-    
+
+
     // Fetches quests from the server using URLSession and Combine.
     func fetchQuests() -> AnyPublisher<[CreatedQuest], Error> {
-        let url = URL(string: "https://universitygeocaching.azurewebsites.net/api/location")!
-        
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .map(\.data)
+        let url = URL(string: "http://universitygeocaching.azurewebsites.net/api/location")!
+
+        // Create a URLRequest with custom headers
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("*/*", forHTTPHeaderField: "accept")
+
+        // Set the authorization token
+        request.setValue("starterKey420", forHTTPHeaderField: "X-Auth")
+
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .tryMap { (data, response) -> Data in
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("Status code: \(httpResponse.statusCode)")
+                    print("Response data: \(String(data: data, encoding: .utf8) ?? "Unable to decode response")")
+
+                    if httpResponse.statusCode != 200 {
+                        throw URLError(.badServerResponse)
+                    }
+                }
+                return data
+            }
             .decode(type: [CreatedQuest].self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+
+
 }
 
 // Cancellables is a class that holds a set of AnyCancellables.
@@ -84,40 +106,53 @@ class Cancellables: ObservableObject {
 
 // CreatedQuest is a struct representing a created quest.
 struct CreatedQuest: Identifiable, Codable {
-    let id: UUID
-    let title: String
-    let description: String
-    let imageName: String
+    let id: Int
+    var uuid: UUID {
+        return UUID(uuidString: "\(id)")!
+    }
+    let cachename: String
     let difficulty: Int
     let hints: String
     let latitude: Double
     let longitude: Double
     let radius: Int
+    let timestamp: String
     let trivia: String
+    let users: [String] // Assuming users is an array of strings
+    let verificationString: String
     var completed: Bool = false
 
     enum CodingKeys: String, CodingKey {
-        case id, title, description, imageName, difficulty, hints, latitude, longitude, radius, trivia
+        case id, cachename, difficulty, hints, latitude, longitude, radius, timestamp, trivia, users, verificationString
     }
 }
+
+
+
 
 // QuestCardView displays a single quest card.
 struct QuestCardView: View {
     let quest: CreatedQuest
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(quest.title)
+            Text(quest.cachename)
                 .font(.headline)
-           
 
-            // Display the quest's image
-            Image(quest.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(8)
-            // Display the quest's description
-            Text(quest.description)
+            // Display the quest's hints, difficulty, and other information
+            Text("Hints: \(quest.hints)")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+
+            Text("Difficulty: \(quest.difficulty)")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+
+            Text("Trivia: \(quest.trivia)")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+
+            Text("Verification String: \(quest.verificationString)")
                 .font(.footnote)
                 .foregroundColor(.secondary)
         }
@@ -127,6 +162,7 @@ struct QuestCardView: View {
         .shadow(radius: 5)
     }
 }
+
 
 // CheckBox is a custom view that displays a checkmark when the quest is completed.
 struct CheckBox: View {
@@ -147,13 +183,13 @@ struct CheckBox: View {
 // QuestDetailView displays the details of a single quest.
 struct QuestDetailView: View {
     let quest: CreatedQuest
-    
+
     var body: some View {
         VStack {
-            Text(quest.title)
+            Text(quest.cachename) // Use 'cachename' instead of 'title'
                 .font(.largeTitle)
                 .padding()
-            Text(quest.description)
+            Text(quest.trivia) // Use 'trivia' instead of 'description'
                 .font(.body)
                 .padding()
             // Display the quest's location on a map
@@ -162,6 +198,7 @@ struct QuestDetailView: View {
         }
     }
 }
+
 
 // MapView is a UIViewRepresentable that displays a map with a single annotation.
 struct MapView: UIViewRepresentable {
@@ -213,7 +250,7 @@ class NearbyQuestViewModel: ObservableObject {
         guard let currentLocation = currentLocation else {
             return
         }
-        
+
         let wrappedQuests = quests.map { QuestWrapper(quest: $0) }
         let filteredQuests = wrappedQuests.filter { !$0.completed }
         nearbyQuests = filteredQuests.sorted {
@@ -229,3 +266,4 @@ struct NearbyQuestView_Previews: PreviewProvider {
         NearbyQuestView()
     }
 }
+
