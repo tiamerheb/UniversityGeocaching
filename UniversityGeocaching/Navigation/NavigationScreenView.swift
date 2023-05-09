@@ -1,10 +1,3 @@
-//
-//  NavigationScreenView.swift
-//  UniversityGeocaching
-//
-//  Created by Ewhondens Kenel and Grace Gresli on 3/19/23.
-//
-
 import Foundation
 import MapKit
 import SwiftUI
@@ -46,8 +39,8 @@ struct NavigationScreenView: View {
             codeTypes: [.qr],
             completion: { result in
                 if case let .success(code) = result {
-                    self.scannedCode = code.string //made a .string device
-                    self.isPresentingScanner = false //by setting this to flase it closes the scanner sheet
+                    self.scannedCode = code.string
+                    self.isPresentingScanner = false
                     showFinishPopUp()
                 }
             }
@@ -85,10 +78,10 @@ struct NavigationScreenView: View {
                                 .foregroundColor(.blue)
                                 .font(.system(size: 32))
                                 .foregroundColor(.blue)
-                                .padding(.top, 10) // Adds 10 points of padding to the top
-                                .padding(.leading, 20) // Adds 20 points of padding to the leading (left) side
-                                .padding(.bottom, 80) // Adds 30 points of padding to the bottom
-                                .padding(.trailing, 40) // Adds 40 points of padding to the trailing (right) side
+                                .padding(.top, 10)
+                                .padding(.leading, 20)
+                                .padding(.bottom, 80)
+                                .padding(.trailing, 40)
                                 .font(.system(size: 32))
                         }
                     }
@@ -112,99 +105,100 @@ struct NavigationScreenView: View {
 
             // Scanning feature
             VStack{
+                
                 Text("Camera/QR reader")
-                Button("Scan Code Now"){
-                    self.isPresentingScanner = true
-                }
-                .sheet(isPresented: $isPresentingScanner){
-                    self.scannerSheet
-                }
-            }
-            .tabItem {
-                Image(systemName: "camera")
-                Text("Scan Code")
-            }
-            // List tab
-            NearbyQuestView()
-                        .tabItem {
-                            Image(systemName: "list.bullet")
-                            Text("List")
+                                Button("Scan Code Now"){
+                                    self.isPresentingScanner = true
+                                }
+                                .sheet(isPresented: $isPresentingScanner){
+                                    self.scannerSheet
+                                }
+                            }
+                            .tabItem {
+                                Image(systemName: "camera")
+                                Text("Scan Code")
+                            }
+
+                            // List tab
+                            NearbyQuestView()
+                                .tabItem {
+                                    Image(systemName: "list.bullet")
+                                    Text("List")
+                                }
                         }
+                        .sheet(isPresented: $isPresentingFinishPopUp) {
+                            FinishPopUpView(isPresentingFinishPopUp: $isPresentingFinishPopUp)
+                        }
+                        .edgesIgnoringSafeArea(.all)
+                    }
+                    
+                    class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+                        private let locationManager = CLLocationManager()
+                        @Published var location: CLLocation?
+                        
+                        override init() {
+                            super.init()
+                            locationManager.delegate = self
+                            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                        }
+                        
+                        func requestLocation() {
+                            locationManager.requestWhenInUseAuthorization()
+                            locationManager.requestLocation()
+                        }
+                        
+                        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+                            location = locations.last
+                        }
+                        
+                        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+                            print(error.localizedDescription)
+                        }
+                    }
                 }
-                .sheet(isPresented: $isPresentingFinishPopUp) {
-                    FinishPopUpView()
-                }
-                .edgesIgnoringSafeArea(.all)
-            }
-    
-    class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-        private let locationManager = CLLocationManager()
-        @Published var location: CLLocation?
-        
-        override init() {
-            super.init()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        }
-        
-        func requestLocation() {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.requestLocation()
-        }
-        
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            location = locations.last
-        }
-        
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error.localizedDescription)
-        }
-    }
-}
-
-
+                 
 struct FinishPopUpView: View {
-var body: some View {
-    VStack {
-        Text("Quest Completed!")
-            .font(.title)
-            .fontWeight(.bold)
-            .padding()
-        Image(systemName: "checkmark.circle.fill")
-            .resizable()
-            .frame(width: 80, height: 80)
-            .foregroundColor(.green)
-            .padding()
-        Text("Congratulations, you have finished the quest!")
-            .multilineTextAlignment(.center)
-            .padding()
-        Button(action: {
-            // Dismiss the pop-up
-            dismiss()
-        }) {
-            Text("Close")
+    @Binding var isPresentingFinishPopUp: Bool
+
+    var body: some View {
+        VStack {
+            Text("Quest Completed!")
+                .font(.title)
                 .fontWeight(.bold)
                 .padding()
-                .foregroundColor(.white)
-                .background(Color.blue)
-                .cornerRadius(10)
+            Image(systemName: "checkmark.circle.fill")
+                .resizable()
+                .frame(width: 80, height: 80)
+                .foregroundColor(.green)
+                .padding()
+            Text("Congratulations, you have finished the quest!")
+                .multilineTextAlignment(.center)
+                .padding()
+            Button(action: {
+                // Dismiss the pop-up
+                dismiss()
+            }) {
+                Text("Close")
+                    .fontWeight(.bold)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
         }
-    }
-    .padding()
-    .background(Color.white)
-    .cornerRadius(20)
-    .shadow(radius: 20)
-}
-
-func dismiss() {
-    // Dismiss the pop-up
-}
-}
-
-
-struct NavigationScreenView_Previews:PreviewProvider {
-        static var previews: some View {
-            NavigationScreenView()
-        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(radius: 20)
     }
 
+    func dismiss() {
+        isPresentingFinishPopUp = false
+    }
+}
+
+struct NavigationScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationScreenView()
+    }
+}
