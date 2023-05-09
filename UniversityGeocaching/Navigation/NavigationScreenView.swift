@@ -34,18 +34,23 @@ struct NavigationScreenView: View {
     }
     
     //qr code scannersheet
-    var scannerSheet : some View {
+    var scannerSheet: some View {
         CodeScannerView(
             codeTypes: [.qr],
             completion: { result in
                 if case let .success(code) = result {
                     self.scannedCode = code.string
                     self.isPresentingScanner = false
-                    showFinishPopUp()
+                    if let url = URL(string: scannedCode), UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    } else {
+                        // Show an error or handle non-URL QR codes as needed
+                    }
                 }
             }
         )
     }
+
     
     var caches = [
         Cache(name: "USD Torero Store", coordinate: CLLocationCoordinate2D(latitude: 32.772364, longitude: -117.187653)),
