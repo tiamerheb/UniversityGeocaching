@@ -126,19 +126,17 @@ struct NavigationScreenView: View {
                 Text("Scan Code")
             }
             // List tab
-            List(caches) { cache in
-                Text(cache.name)
+            NearbyQuestView()
+                        .tabItem {
+                            Image(systemName: "list.bullet")
+                            Text("List")
+                        }
+                }
+                .sheet(isPresented: $isPresentingFinishPopUp) {
+                    FinishPopUpView()
+                }
+                .edgesIgnoringSafeArea(.all)
             }
-            .tabItem {
-                Image(systemName: "list.bullet")
-                Text("List")
-            }
-        }
-        .sheet(isPresented: $isPresentingFinishPopUp) {
-                FinishPopUpView()
-            }
-            .edgesIgnoringSafeArea(.all)
-    }
     
     class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         private let locationManager = CLLocationManager()

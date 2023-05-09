@@ -10,16 +10,32 @@ struct NearbyQuestView: View {
     @StateObject private var locationManager = LocationManager()
 
     var body: some View {
-        NavigationView {
-            List(nearbyQuests, id: \.id) { quest in
-                NavigationLink(destination: QuestMapView(quest: quest)) {
-                    Text("Cache Name: \(quest.cachename)")
+            NavigationView {
+                VStack {
+                    Text("Nearby Quests")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.top, 20)
+                        .padding(.bottom, 10)
+
+                    List(nearbyQuests, id: \.id) { quest in
+                        NavigationLink(destination: QuestMapView(quest: quest)) {
+                            HStack {
+                                Text(quest.cachename)
+                                    .font(.headline)
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                Image(systemName: "arrow.right")
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                    .listStyle(InsetGroupedListStyle())
                 }
+                .navigationBarHidden(true)
+                .onAppear(perform: loadData)
             }
-            .navigationBarTitle(Text("Nearby Quests"))
-            .onAppear(perform: loadData)
         }
-    }
 
 
     func loadData() {
@@ -119,7 +135,7 @@ struct QuestMapView: View {
     
     init(quest: CreatedQuest) {
         self.quest = quest
-        self._region = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: quest.latitude, longitude: quest.longitude), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)))
+        self._region = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: quest.latitude, longitude: quest.longitude), span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)))
     }
     
     var body: some View {
@@ -127,9 +143,11 @@ struct QuestMapView: View {
             MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: quest.latitude, longitude: quest.longitude)) {
                 Image(systemName: "mappin.circle")
                     .resizable()
+                    .foregroundColor(.red)
                     .frame(width: 40, height: 40)
             }
         }
+        .edgesIgnoringSafeArea(.all)
         .navigationBarTitle(Text(quest.cachename), displayMode: .inline)
     }
 }
