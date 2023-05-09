@@ -524,7 +524,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = TiaMerheb.UniversityGeocaching;
+				PRODUCT_BUNDLE_IDENTIFIER = TiaMerheb.UniversityGeocaching.new;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -540,7 +540,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UniversityGeocaching/Preview Content\"";
-				DEVELOPMENT_TEAM = W94355ZHUF;
+				DEVELOPMENT_TEAM = Z897TX88J8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UniversityGeocaching/Info.plist;
@@ -557,7 +557,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = TiaMerheb.UniversityGeocaching.1;
+				PRODUCT_BUNDLE_IDENTIFIER = TiaMerheb.UniversityGeocaching.new;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

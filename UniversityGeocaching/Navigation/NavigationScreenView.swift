@@ -43,6 +43,8 @@ struct NavigationScreenView: View {
                     self.isPresentingScanner = false
                     if let url = URL(string: scannedCode), UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url)
+                        // show the finish popup after successfully scanning the QR code
+                        self.showFinishPopUp()
                     } else {
                         // Show an error or handle non-URL QR codes as needed
                     }
