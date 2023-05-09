@@ -95,15 +95,14 @@ struct NavigationScreenView: View {
                 }
             }
             .onAppear {
-                locationManager.requestLocation()
-                
-            }
-            .onReceive(locationManager.$location) { location in
-                if let location = location {
-                    region = MKCoordinateRegion(
-                        center: location.coordinate,
-                        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-                    )
+                            locationManager.requestLocation()
+                        }
+                        .onReceive(locationManager.$location) { location in
+                            if let location = location {
+                                region = MKCoordinateRegion(
+                                    center: location.coordinate,
+                                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                                )
                 }
             }
             .tabItem {
