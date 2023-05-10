@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5EE82CD329E6172D00CA15CE /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE82CD229E6172D00CA15CE /* CodeScanner */; };
 		659750F729C4EF0200CF7990 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 659750F629C4EF0200CF7990 /* .gitignore */; };
+		855D914B2A0C384B0044DCFD /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D914A2A0C384B0044DCFD /* QRScannerView.swift */; };
 		85A1CCB729C81E600031EC23 /* NavigationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A1CCB629C81E600031EC23 /* NavigationScreenView.swift */; };
 		967FF45E29930CBE005EB8BC /* UniversityGeocachingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */; };
 		967FF46029930CBE005EB8BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF45F29930CBE005EB8BC /* ContentView.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		5EE82CD029E6169000CA15CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		659750F629C4EF0200CF7990 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		855D914A2A0C384B0044DCFD /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		85A1CCB629C81E600031EC23 /* NavigationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationScreenView.swift; sourceTree = "<group>"; };
 		967FF45A29930CBE005EB8BC /* UniversityGeocaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityGeocaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967FF45D29930CBE005EB8BC /* UniversityGeocachingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityGeocachingApp.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				96DA87DB29959EDE00284CBE /* PastQuestView.swift */,
 				96DA87DF29959EEC00284CBE /* UserSettingsView.swift */,
 				85A1CCB629C81E600031EC23 /* NavigationScreenView.swift */,
+				855D914A2A0C384B0044DCFD /* QRScannerView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			files = (
 				96DA87E6299C499A00284CBE /* DiscoverKnauss.swift in Sources */,
 				96DA87EE29A5864800284CBE /* SignIn.swift in Sources */,
+				855D914B2A0C384B0044DCFD /* QRScannerView.swift in Sources */,
 				96DA87DC29959EDE00284CBE /* PastQuestView.swift in Sources */,
 				967FF46029930CBE005EB8BC /* ContentView.swift in Sources */,
 				85A1CCB729C81E600031EC23 /* NavigationScreenView.swift in Sources */,
