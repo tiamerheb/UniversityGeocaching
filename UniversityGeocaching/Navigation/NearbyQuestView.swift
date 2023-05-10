@@ -19,7 +19,7 @@ struct NearbyQuestView: View {
                         .padding(.bottom, 10)
 
                     List(nearbyQuests, id: \.id) { quest in
-                        NavigationLink(destination: QuestMapView(quest: quest)) {
+                        NavigationLink(destination: QRScannerView(verificationString: quest.verificationString)) {
                             HStack {
                                 Text(quest.cachename)
                                     .font(.headline)
@@ -103,6 +103,8 @@ struct CreatedQuest: Identifiable, Codable {
     let cachename: String
     let latitude: Double
     let longitude: Double
+
+    let verificationString: String
 }
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -127,6 +129,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Location manager failed with error: \(error)")
     }
 }
+
 
 
 struct QuestMapView: View {
@@ -154,7 +157,7 @@ struct QuestMapView: View {
 
 struct QuestMapView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestMapView(quest: CreatedQuest(id: 0, cachename: "Sample Cache", latitude: 37.7749, longitude: -122.4194))
+        QuestMapView(quest: CreatedQuest(id: 0, cachename: "Sample Cache", latitude: 37.7749, longitude: -122.4194, verificationString:"1234"))
     }
 }
 

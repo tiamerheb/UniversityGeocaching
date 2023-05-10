@@ -2,52 +2,61 @@ import SwiftUI
 import CodeScanner
 
 struct QRScannerView: View {
-    @State private var isShowingScanner = false
+    var verificationString: String
+    @State private var isPresentingScanner = false
     @State private var scannedCode: String?
+    @State private var isCodeVerified = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                if let code = scannedCode {
-                    Text("Scanned QR Code:")
-                    Text(code)
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
-                } else {
-                    Text("No QR Code Scanned")
-                }
-                Spacer()
-                Button(action: {
-                    isShowingScanner = true
-                }) {
-                    Text("Start Scanning")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
+        VStack {
+            Text("Scan a QR code")
+                .font(.title)
+                .padding(.bottom, 30)
+
+            Button(action: {
+                self.isPresentingScanner = true
+            }) {
+                Text("Start Scanning")
+                    .font(.title2)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
-            .padding()
-            .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "example-qr-code") { result in
-                    isShowingScanner = false
-                    if case .success(let code) = result {
-                        scannedCode = code.string
-                    } else {
-                        print("Scanning failed")
+            .sheet(isPresented: $isPresentingScanner) {
+                CodeScannerView(
+                    codeTypes: [.qr],
+                    completion: { result in
+                        if case let .success(code) = result {
+                            self.scannedCode = code.string
+                            self.isPresentingScanner = false
+                            self.isCodeVerified = (self.scannedCode == self.verificationString)
+                        }
                     }
+                )
+            }
+
+            if let scannedCode = scannedCode {
+                Text("Scanned Code: \(scannedCode)")
+                    .padding()
+
+                if isCodeVerified {
+                    Text("Code verified!")
+                        .foregroundColor(.green)
+                        .fontWeight(.bold)
+                } else {
+                    Text("Code not verified.")
+                        .foregroundColor(.red)
+                        .fontWeight(.bold)
                 }
             }
-            .navigationBarTitle("QR Scanner")
         }
     }
 }
 
 struct QRScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        QRScannerView()
+        QRScannerView(verificationString: "1234")
     }
 }
 
