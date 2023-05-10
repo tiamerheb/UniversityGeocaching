@@ -112,15 +112,17 @@ struct NavigationScreenView: View {
 
             // Scanning feature
             VStack{
-                
-                Text("Camera/QR reader")
-                                Button("Scan Code Now"){
-                                    self.isPresentingScanner = true
-                                }
-                                .sheet(isPresented: $isPresentingScanner){
-                                    self.scannerSheet
-                                }
-                            }
+                QRScannerView(verificationString: "Your Verification String Here")
+                .tabItem {
+                    Image(systemName: "camera")
+                    Text("Scan Code")
+                }
+            }
+            .tabItem {
+                Image(systemName: "camera")
+                Text("Scan Code")
+            }
+
                             .tabItem {
                                 Image(systemName: "camera")
                                 Text("Scan Code")
