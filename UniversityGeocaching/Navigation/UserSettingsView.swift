@@ -5,26 +5,29 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct UserSettingsView: View {
     
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("isHighContrast") private var isHighContrast = false
     @AppStorage("cacheBubbleColor") private var cacheBubbleColor = "Blue"
     @AppStorage("shareLocation") private var shareLocation = true
+    @AppStorage("notificationOn") private var notificationOn = true
     @AppStorage("notificationFrequency") private var notificationFrequency = "Daily"
     @AppStorage("distanceUnit") private var distanceUnit = "Metric"
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Appearance")) {
                     Toggle(isOn: $isDarkMode) {
-                            Text("Dark Mode")
-                         }
-                         .padding(.bottom, 10)
-                         .preferredColorScheme(isDarkMode ? .dark : .light)
+                        Text("Dark Mode")
+                    }
+                    .padding(.bottom, 10)
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
                 }
-                
                 Section(header: Text("Map Settings")) {
                     Picker(selection: $cacheBubbleColor, label: Text("Cache Bubble Color")) {
                         Text("Blue").tag("Blue")
@@ -38,7 +41,10 @@ struct UserSettingsView: View {
                     }
                 }
                 
-                Section(header: Text("Notifications")) {
+                Section(header: Text("Notification Preferences")) {
+                    Toggle(isOn: $notificationOn) {
+                        Text("Notifications")
+                    }
                     Picker(selection: $notificationFrequency, label: Text("Notification Frequency")) {
                         Text("Daily").tag("Daily")
                         Text("Weekly").tag("Weekly")

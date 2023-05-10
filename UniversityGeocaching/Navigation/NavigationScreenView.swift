@@ -204,6 +204,14 @@ struct FinishPopUpView: View {
     }
 }
 
+struct DetailView: View {
+    var body: some View {
+        Text("Detail View")
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle("Detail Title")
+    }
+}
+
 struct NavigationScreenView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationScreenView()
