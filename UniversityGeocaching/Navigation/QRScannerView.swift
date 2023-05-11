@@ -1,5 +1,7 @@
 import SwiftUI
 import CodeScanner
+import Combine
+
 
 struct QRScannerView: View {
     var verificationString: String
@@ -54,9 +56,39 @@ struct QRScannerView: View {
     }
 }
 
+
+
+class API: ObservableObject {
+    @Published var verificationString: String = ""
+
+    func fetchVerificationString(verificationString: String) {
+        // Replace the urlString with your own API endpoint
+        let urlString = "http://universitygeocaching.azurewebsites.net/api/location/\(verificationString)"
+
+        guard let url = URL(string: urlString) else { return }
+
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                let decoder = JSONDecoder()
+
+                do {
+                    let response = try decoder.decode(String.self, from: data)
+                    DispatchQueue.main.async {
+                        self.verificationString = response
+                    }
+                } catch {
+                    print("Error decoding verification string:", error)
+                }
+            }
+        }.resume()
+    }
+}
+
+
 struct QRScannerView_Previews: PreviewProvider {
     static var previews: some View {
         QRScannerView(verificationString: "1234")
     }
 }
+
 
