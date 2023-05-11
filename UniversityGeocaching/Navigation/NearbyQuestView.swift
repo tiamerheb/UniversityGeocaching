@@ -19,7 +19,7 @@ struct NearbyQuestView: View {
                         .padding(.bottom, 10)
 
                     List(nearbyQuests, id: \.id) { quest in
-                        NavigationLink(destination: QRScannerView(verificationString: quest.verificationString)) {
+                        NavigationLink(destination: QuestMapView(quest: quest)) {
                             HStack {
                                 Text(quest.cachename)
                                     .font(.headline)
