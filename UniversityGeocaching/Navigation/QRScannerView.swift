@@ -4,13 +4,11 @@ import Combine
 
 // QRScannerView is a SwiftUI View that allows the user to scan a QR code and check if it matches the verificationString
 struct QRScannerView: View {
-    // The expected QR code string to match the scanned code against
     var verificationString: String
-    
-    // State variables to manage the presentation of the scanner and the scanned QR code
     @State private var isPresentingScanner = false
     @State private var scannedCode: String?
     @State private var isCodeVerified = false
+    
 
     // The main view content
     var body: some View {
@@ -40,6 +38,7 @@ struct QRScannerView: View {
                             self.scannedCode = code.string
                             self.isPresentingScanner = false
                             self.isCodeVerified = (self.scannedCode == self.verificationString)
+
                         }
                     }
                 )
